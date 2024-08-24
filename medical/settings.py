@@ -166,19 +166,5 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '1071206106374-ksqajvi6576scmqsfcom83fmjsnceb0j.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '###########################'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '####################'
