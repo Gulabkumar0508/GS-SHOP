@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% block title %}order | GS-SHOP{% endblock title %}
+
+{% block body %}
+<style>
+    .cart-image {
+        width: 200px; /* Set the desired width */
+        height: 200px; /* Set the desired height */
+        object-fit: cover; /* Ensures images cover the box while maintaining aspect ratio */
+    }
+    .cart_product {
+        vertical-align: middle; /* Ensures the content is aligned vertically */
+    }
+</style>
+
+<section id="cart_items">
+    <div class="container">
+        <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="{% url 'index' %}">Home</a></li>
+                <li class="active">Shopping Cart</li>
+            </ol>
+        </div>
+        <div class="table-responsive cart_info">
+            <table class="table table-condensed">
+                <thead>
+                    <tr class="cart_menu">
+                        <td class="image">Item</td>
+                        <td class="description"></td>
+                        <td class="price">Price</td>
+                        <td class="quantity">Quantity</td>
+                        <td class="total">Total</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for i in order %}
+                    <tr>
+                        <td class="cart_product">
+                            <a href=""><img src="{{ i.image }}" alt="" class="cart-image"></a>
+                        </td>
+                        <td class="cart_description">
+                            <h4><a href="">{{ i.product }}</a></h4>
+                            <p>Web ID: 1089772</p>
+                        </td>
+                        <td class="cart_price">
+                            <p>${{ i.price }}</p>
+                        </td>
+                        <td class="cart_quantity">
+                            <p class="cart_quantity">{{ i.Quantity }}</p>
+                        </td>
+                        <td class="cart_total">
+                            <p class="cart_total_price">${{ i.total }}</p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section> <!--/#cart_items-->
+{% endblock body %}

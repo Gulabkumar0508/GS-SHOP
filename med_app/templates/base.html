@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv= 'x-ua-compatible' content= 'ie=edge' />
+	<meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}Home | GS-SHOP{% endblock title %}</title>
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
+<link href="{% static 'css/prettyPhoto.css' %}" rel="stylesheet">
+<link href="{% static 'css/price-range.css' %}" rel="stylesheet">
+<link href="{% static 'css/animate.css' %}" rel="stylesheet">
+<link href="{% static 'css/main.css' %}" rel="stylesheet">
+<link href="{% static 'css/responsive.css' %}" rel="stylesheet">
+<!--[if lt IE 9]>
+<script src="{% static 'js/html5shiv.js' %}"></script>
+<script src="{% static 'js/respond.min.js' %}"></script>
+<![endif]-->
+<link rel="shortcut icon" href="{% static 'images/ico/favicon.ico' %}">
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="{% static 'images/ico/apple-touch-icon-144-precomposed.png' %}">
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="{% static 'images/ico/apple-touch-icon-114-precomposed.png' %}">
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="{% static 'images/ico/apple-touch-icon-72-precomposed.png' %}">
+<link rel="apple-touch-icon-precomposed" href="{% static 'images/ico/apple-touch-icon-57-precomposed.png' %}">
+
+</head><!--/head-->
+
+<body>
+    <header id="header"><!--header-->
+		<div class="header_top"><!--header_top-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-6">
+						<div class="contactinfo">
+							<ul class="nav nav-pills">
+								<li><a href="#"><i class="fa fa-phone"></i> +92 3063104874</a></li>
+								<li><a href="#"><i class="fa fa-envelope"></i> kumargulab500@gmail.com</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="social-icons pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href=""><i class="fa fa-facebook"></i></a></li>
+								<li><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="https://www.linkedin.com/in/gulab-kumar/"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!--/header_top-->
+
+		<div class="header-middle"><!--header-middle-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="logo pull-left">
+							<a href="{% url 'index' %}"><img src="{% static 'images/home/logos1.png' %}" alt=""  style="width: 60px; height: auto;" /></a>
+						</div>
+					</div>
+					<div class="col-sm-8">
+						<div class="shop-menu pull-right">
+							<ul class="nav navbar-nav">
+								<li><a href="{% url 'order' %}"><i class="fa fa-star"></i> Your order</a></li>
+								<li><a href="{%  url 'cart_detail' %}"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+								<li><a href="{%  url 'cart_detail' %}"><i class="fa fa-shopping-cart"></i>cart <span class="badge badge-secondary">{{request.session.cart|length}}</span></a></li>
+								{% if user.is_authenticated %}
+                                <li>
+                                    <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                                        {% csrf_token %}
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-lock"></i> Logout</button>
+                                    </form>
+                                </li>
+                                {% else %}
+                                <li><a href="{% url 'login' %}"><i class="fa fa-lock"></i> Login</a></li>
+                                {% endif %}
+							</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!--/header-middle-->
+
+		<div class="header-bottom"><!--header-bottom-->
+			<div class="container">
+				<div class="row">
+					<div class="col-sm-9">
+						<div class="navbar-header">
+							<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+								<span class="sr-only">Toggle navigation</span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+								<span class="icon-bar"></span>
+							</button>
+						</div>
+						<div class="mainmenu pull-left">
+							<ul class="nav navbar-nav collapse navbar-collapse">
+								<li><a href="{% url  'index' %}" class="active">Home</a></li>
+								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a href="{% url 'product' %}">Products</a></li>
+										<li><a href="{%  url 'cart_detail' %}">Checkout</a></li>
+										<li><a href="{%  url 'cart_detail' %}">Cart</a></li>
+										<li><a href="{%  url 'login' %}">Login</a></li>
+                                    </ul>
+                                </li>
+								<li><a href="{% url 'contact_us' %}">Contact</a></li>
+							</ul>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<form method="post" action="/search/" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="search_box pull-right">
+							<input type="text" name="query" placeholder="Search"/>
+						</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div><!--/header-bottom-->
+	</header><!--/header-->
+
+	{% block body %}
+	{% endblock body %}
+
+
+    <footer id="footer" style="background-color: #f8f8f8; padding: 20px 0;">
+    <!-- Footer Top -->
+    <div class="footer-top" style="border-bottom: 1px solid #e7e7e7; padding-bottom: 20px;">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-sm-4" style="margin-bottom: 20px;">
+                    <div class="companyinfo">
+                        <h2 style="font-size: 24px; font-weight: bold;">GS-SHOP</h2>
+                        <p style="margin: 10px 0;">Your one-stop-shop for all things fashion. Find the latest trends and updates here.</p>
+                    </div>
+                </div>
+                <!-- Address -->
+                <div class="col-sm-4" style="margin-bottom: 20px;">
+                    <div class="address">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3618.9179130707553!2d67.16552777461918!3d24.900781477902918!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3eb339c72ec76665%3A0xec5d1d821453c988!2sJinnah%20International%20Airport!5e0!3m2!1sen!2s!4v1723837462754!5m2!1sen!2s" width="150" height="100" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" ></iframe>
+                        <p style="margin-top: 10px;"></p>
+                    </div>
+                </div>
+                <!-- Newsletter Signup -->
+                <div class="col-sm-4" style="margin-bottom: 20px;">
+                    <div class="newsletter">
+                        <h2 style="font-size: 18px; margin-bottom: 10px;">Subscribe to our Newsletter</h2>
+                        <form action="#" class="searchform" style="display: flex; align-items: center;">
+                            <input type="email" placeholder="Your email address" required style="flex: 1; padding: 10px; border: 1px solid #ddd; border-radius: 4px;" />
+                            <button type="submit" class="btn btn-default" style="padding: 10px; background-color: #333; color: #fff; border: none; border-radius: 4px; cursor: pointer;">
+                                <i class="fa fa-arrow-circle-o-right"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Bottom -->
+    <div class="footer-bottom" style="background-color: #333; color: #fff; padding: 10px 0;">
+        <div class="container">
+            <div class="row">
+                <p class="pull-left" style="float: left;"></p>
+                <p class="pull-right" style="float: right;">
+                    Designed by <span><a target="_blank" href="#" style="color: #fff; text-decoration: none;">Gulab kumar</a></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer><!--/Footer-->
+
+
+
+
+
+		<script src="{% static 'js/jquery.js' %}"></script>
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+		<script src="{% static 'js/price-range.js' %}"></script>
+		<script src="{% static 'js/jquery.prettyPhoto.js' %}"></script>
+		<script src="{% static 'js/main.js' %}"></script>
+</body>
+</html>

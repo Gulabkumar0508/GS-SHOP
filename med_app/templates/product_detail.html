@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Product_detail | GS-SHOP{% endblock title %}
+
+{% block body %}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-3">
+                <!-- Sidebar content -->
+            </div>
+
+            <div class="col-sm-9 padding-right">
+                <div class="product-details">
+                    <div class="col-sm-5">
+                        <img src="/{{ product.image }}" class="newarrival" alt="" style="width: 60%; max-width: 500px; height: auto; object-fit: cover; border-radius: 5px;"  />
+                    </div>
+                    <div class="col-sm-7">
+                        <h2>{{ product.name }}</h2>
+                        <h3>RS:{{ product.price }}</h3>
+                        <h3>Availability:{{ product.available }}</h3>
+                        <br>
+                        <a href="{% url 'cart_add' product.id %}" class="btn btn-default add-to-cart">
+                            <i class="fa fa-shopping-cart"></i> Add to cart
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Display Messages -->
+                {% if messages %}
+                    <div class="alert alert-info">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                {% if product_list %}
+                <div class="features_items">
+                    <h2 class="title text-center">Features Items</h2>
+                    {% for prod in product_list %}
+                    <div class="col-sm-4">
+                        <!-- Product item details -->
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

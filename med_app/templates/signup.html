@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Signup | GS-SHOP{% endblock title %}
+{% block body %}
+<section id="form" style="display: flex; justify-content: center; align-items: center; min-height: 100vh;"> <!--form-->
+    <div class="container" style="max-width: 400px;">
+        <div class="signup-form">
+            <h2 style="text-align: center; margin-bottom: 20px;">New User Signup</h2>
+            <form method="post" action="#">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div style="margin-bottom: 15px;">
+                        {{ field.label_tag }}<br>
+                        {{ field }}
+                        <div style="color: red; font-size: 12px;">{{ field.errors }}</div>
+                    </div>
+                {% endfor %}
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 15px;">Signup</button>
+                <div style="text-align: center;">
+                    <span style="color:black;">Already have an account?</span>
+                    <a href="{% url 'login' %}">Login In</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock body %}
