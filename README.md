@@ -1,1 +1,2 @@
-<h1>E-xommerce website</h1>
+<h1>E-commerce website</h1>
+simple e-commerce website
